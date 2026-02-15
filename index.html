@@ -11,101 +11,107 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#f6a5a5,#fbc2eb);
-    font-family:Arial;
+    background: linear-gradient(135deg,#f8a5c2,#fbc2eb);
+    font-family: "Segoe UI", sans-serif;
     overflow:hidden;
 }
 
-.container{
+/* floating hearts */
+.heart{
+    position: fixed;
+    bottom: -40px;
+    font-size: 22px;
+    animation: float 7s linear infinite;
+    opacity:0.8;
+}
+
+@keyframes float{
+    0%{ transform:translateY(0) scale(1); opacity:0;}
+    50%{opacity:1;}
+    100%{ transform:translateY(-110vh) scale(1.6); opacity:0;}
+}
+
+.card{
+    background: rgba(255,255,255,0.15);
+    padding:40px;
+    border-radius:30px;
+    backdrop-filter: blur(10px);
     text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,0.2);
 }
 
 img{
-    width:230px;
-    border-radius:30px;
-    box-shadow:0 15px 35px rgba(0,0,0,0.25);
-    margin-bottom:25px;
+    width:220px;
+    margin-bottom:20px;
 }
 
 h1{
     color:white;
-    font-size:36px;
-    padding:0 20px;
+    font-size:34px;
+}
+
+.buttons{
+    margin-top:25px;
 }
 
 button{
+    border:none;
     padding:12px 28px;
     font-size:18px;
-    border:none;
     border-radius:25px;
-    margin:12px;
     cursor:pointer;
+    margin:10px;
+    transition:0.3s;
 }
 
-#yes{
+.yes{
     background:#ff4d6d;
     color:white;
 }
 
-#no{
+.yes:hover{
+    transform:scale(1.1);
+}
+
+.no{
     background:white;
 }
 
-.heart{
-    position:fixed;
-    font-size:22px;
-    animation:fall 6s linear infinite;
-}
-
-@keyframes fall{
-    from{transform:translateY(-10vh);}
-    to{transform:translateY(110vh);opacity:0;}
-}
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="card">
+    <img src="bear.png">
+    <h1>Even with the distance… my heart still chose you ❤️  
+So I need to know… will you stay with me?</h1>
 
-<img src="bear.png" width="240">
-<h1>
-Even with the distance… my heart still chose you ❤️  
-So I need to know… will you stay with me?
-</h1>
-
-<button id="yes">Yes ❤️</button>
-<button id="no">No</button>
-
+    <div class="buttons">
+        <button class="yes" onclick="location.href='yes.html'">Yes 💗</button>
+        <button class="no" id="noBtn">No</button>
+    </div>
 </div>
 
 <script>
-/* running NO button */
-const noBtn=document.getElementById("no");
-noBtn.addEventListener("mouseover",
-()=>{
- const x=Math.random()*window.innerWidth;
- const y=Math.random()*window.innerHeight;
- noBtn.style.position="absolute";
- noBtn.style.left=x+"px";
- noBtn.style.top=y+"px";
+/* moving NO button 😂 */
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", ()=>{
+    noBtn.style.position="absolute";
+    noBtn.style.left=Math.random()*80+"vw";
+    noBtn.style.top=Math.random()*80+"vh";
 });
-
-/* go to next page */
-document.getElementById("yes").onclick=function(){
- window.location.href="yes.html";
-};
 
 /* floating hearts */
 setInterval(()=>{
- const heart=document.createElement("div");
- heart.className="heart";
- heart.innerHTML="💗";
- heart.style.left=Math.random()*100+"vw";
- heart.style.animationDuration=(3+Math.random()*3)+"s";
- document.body.appendChild(heart);
- setTimeout(()=>heart.remove(),6000);
-},700);
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💗";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(20+Math.random()*20)+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),7000);
+},400);
 </script>
 
 </body>
