@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For You ❤️</title>
+<title>I knew it ❤️</title>
 
 <style>
 body{
@@ -11,30 +11,34 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background: linear-gradient(135deg,#ffb6c1,#ffc0cb);
+    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
     font-family: "Segoe UI", sans-serif;
     overflow:hidden;
 }
 
-/* floating hearts background */
+/* floating hearts */
 .heart{
     position: fixed;
     bottom: -50px;
-    font-size: 24px;
+    font-size: 26px;
     animation: float 6s linear infinite;
-    opacity:0.8;
+    opacity:0.9;
 }
 
 @keyframes float{
     0%{ transform:translateY(0) scale(1); opacity:0;}
     50%{opacity:1;}
-    100%{ transform:translateY(-110vh) scale(1.5); opacity:0;}
+    100%{ transform:translateY(-110vh) scale(1.6); opacity:0;}
 }
 
-/* big heart animation */
+.container{
+    text-align:center;
+    color:white;
+}
+
 .bigHeart{
     font-size:120px;
-    animation: pop 1.2s ease forwards;
+    animation: pop 1.3s ease forwards;
 }
 
 @keyframes pop{
@@ -43,77 +47,51 @@ body{
     100%{transform:scale(1);}
 }
 
-/* message */
-.message{
-    text-align:center;
-    color:white;
-    margin-top:20px;
-    opacity:0;
-    animation: appear 2s forwards;
-    animation-delay:1.3s;
-}
-
-@keyframes appear{
-    from{opacity:0; transform:translateY(20px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
 h1{
     font-size:48px;
-    margin:0;
+    margin:10px 0;
 }
 
 p{
     font-size:22px;
-    margin-top:10px;
 }
+
 </style>
 </head>
 
 <body>
 
-<div>
+<div class="container">
     <div class="bigHeart">💖</div>
-
-    <div class="message">
-        <h1>I knew it 😌</h1>
-        <p>You just made me the happiest girl alive</p>
-        <p>Now you are officially stuck with me forever 😏❤️</p>
-    </div>
+    <h1>I knew it 😌</h1>
+    <p>You just made me the happiest girl alive</p>
+    <p>Now you are officially stuck with me forever 😏❤️</p>
+    <p style="font-size:16px;opacity:0.8;">(tap anywhere 💕)</p>
 </div>
 
-<audio id="song" src="love.mp3"></audio>
+<audio id="music" src="love.mp3" loop></audio>
 
 <script>
-window.onload = function(){
-    const music = document.getElementById("song");
-    music.volume = 0.4;
+let started=false;
 
-    // play after user interaction
-    document.body.addEventListener("click", function () {
-        music.play();
-    });
-}
-</script>
+document.addEventListener("click", function(){
+    if(started) return;
+    const audio=document.getElementById("music");
+    audio.volume=0.5;
+    audio.play().catch(()=>{});
+    started=true;
+});
 
-
-<script>
 /* floating hearts */
 setInterval(()=>{
     const heart=document.createElement("div");
     heart.className="heart";
-    heart.innerHTML="💗";
+    heart.innerHTML="💞";
     heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(20+Math.random()*20)+"px";
+    heart.style.fontSize=(22+Math.random()*24)+"px";
     document.body.appendChild(heart);
-
     setTimeout(()=>heart.remove(),6000);
-},400);
-
-/* play music after first touch */
-document.body.addEventListener("click",()=>{
-    document.getElementById("music").play();
-});
+},350);
 </script>
 
 </body>
