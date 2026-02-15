@@ -1,1 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Akrem ❤️</title>
+
+<style>
+body{
+    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial;
+    overflow:hidden;
+}
+
+.box{
+    text-align:center;
+}
+
+h1{
+    font-size:40px;
+    color:white;
+}
+
+button{
+    padding:12px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:25px;
+    margin:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+#yes{
+    background:#ff4d6d;
+    color:white;
+}
+
+#no{
+    background:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h1>Akrem, will you stay with me forever? ❤️</h1>
+
+<button id="yes">Yes ❤️</button>
+<button id="no">No</button>
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+
+noBtn.addEventListener("mouseover",()=>{
+    const i = Math.floor(Math.random()*window.innerWidth);
+    const j = Math.floor(Math.random()*window.innerHeight);
+    noBtn.style.position="absolute";
+    noBtn.style.left=i+"px";
+    noBtn.style.top=j+"px";
+});
+
+document.getElementById("yes").onclick = function(){
+    window.location.href="yes.html";
+}
+</script>
+
+</body>
+</html>
 
