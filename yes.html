@@ -2,91 +2,107 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>❤️</title>
+<title>For You ❤️</title>
 
 <style>
 body{
     margin:0;
     height:100vh;
-    background:linear-gradient(135deg,#fbc2eb,#f6a5a5);
     display:flex;
     justify-content:center;
     align-items:center;
-    text-align:center;
-    font-family:Arial;
-    color:white;
+    background: linear-gradient(135deg,#ffb6c1,#ffc0cb);
+    font-family: "Segoe UI", sans-serif;
+    overflow:hidden;
 }
 
-.box{
-    animation:fade 2s ease;
+/* floating hearts background */
+.heart{
+    position: fixed;
+    bottom: -50px;
+    font-size: 24px;
+    animation: float 6s linear infinite;
+    opacity:0.8;
+}
+
+@keyframes float{
+    0%{ transform:translateY(0) scale(1); opacity:0;}
+    50%{opacity:1;}
+    100%{ transform:translateY(-110vh) scale(1.5); opacity:0;}
+}
+
+/* big heart animation */
+.bigHeart{
+    font-size:120px;
+    animation: pop 1.2s ease forwards;
+}
+
+@keyframes pop{
+    0%{transform:scale(0);}
+    60%{transform:scale(1.2);}
+    100%{transform:scale(1);}
+}
+
+/* message */
+.message{
+    text-align:center;
+    color:white;
+    margin-top:20px;
+    opacity:0;
+    animation: appear 2s forwards;
+    animation-delay:1.3s;
+}
+
+@keyframes appear{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
 }
 
 h1{
     font-size:48px;
+    margin:0;
 }
 
 p{
-    font-size:24px;
-}
-
-img{
-    width:260px;
-    border-radius:25px;
-    margin-bottom:25px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.3);
-}
-
-@keyframes fade{
-    from{opacity:0;transform:scale(0.7);}
-    to{opacity:1;transform:scale(1);}
-}
-
-.heart{
-    position:fixed;
     font-size:22px;
-    animation:fall 6s linear infinite;
-}
-
-@keyframes fall{
-    from{transform:translateY(-10vh);}
-    to{transform:translateY(110vh);opacity:0;}
+    margin-top:10px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="box">
+<div>
+    <div class="bigHeart">💖</div>
 
-<img src="https://media.tenor.com/7x6v1c3xK0gAAAAC/cute-dog.gif">
-
-<h1>I knew it 😌❤️</h1>
-<p>You just made me the happiest girl</p>
-
-<audio id="music" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_946b6c7fcd.mp3?filename=beautiful-piano-109998.mp3" type="audio/mpeg">
-</audio>
-
+    <div class="message">
+        <h1>I knew it 😌</h1>
+        <p>You just made me the happiest girl alive</p>
+        <p>Now you are officially stuck with me forever 😏❤️</p>
+    </div>
 </div>
 
-<script>
-/* play music AFTER click (mobile compatible) */
-window.onload=()=>{
- document.body.addEventListener("click",()=>{
-   document.getElementById("music").play();
- },{once:true});
-};
+<audio id="music">
+    <source src="love.mp3" type="audio/mpeg">
+</audio>
 
-/* hearts */
+<script>
+/* floating hearts */
 setInterval(()=>{
- const heart=document.createElement("div");
- heart.className="heart";
- heart.innerHTML="❤️";
- heart.style.left=Math.random()*100+"vw";
- heart.style.animationDuration=(3+Math.random()*3)+"s";
- document.body.appendChild(heart);
- setTimeout(()=>heart.remove(),6000);
-},700);
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💗";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(20+Math.random()*20)+"px";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),6000);
+},400);
+
+/* play music after first touch */
+document.body.addEventListener("click",()=>{
+    document.getElementById("music").play();
+});
 </script>
 
 </body>
